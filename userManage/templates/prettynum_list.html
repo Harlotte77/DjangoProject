@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div style="margin-bottom: 10px;" class="clearfix">
+        <a href="/prettynum/add/" class="btn btn-success">新建靓号(ModelForm)</a>
+        <div style="float: right;width: 300px;">
+            <form method="get">
+                <div class="input-group">
+                    <input type="text" name="query" class="form-control" placeholder="Search for..." value="{{ search_data }}">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </button>
+                      </span>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+            靓号
+        </div>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>手机号</th>
+                <th>月租</th>
+                <th>级别</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for prettynum_datum in prettynum_data %}
+                <tr>
+                    <th scope="row">{{ prettynum_datum.id }}</th>
+                    <td>{{ prettynum_datum.mobile }}</td>
+                    <td>{{ prettynum_datum.price }}</td>
+                    <td>{{ prettynum_datum.get_level_display }}</td>
+                    <td>{{ prettynum_datum.get_status_display }}</td>
+                    <td>
+                        <a class="btn btn-primary btn-xs" href="/prettynum/{{ prettynum_datum.id }}/edit">编辑</a>
+                        <a class="btn btn-danger btn-xs" href="/prettynum/{{ prettynum_datum.id }}/delete">删除 </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <ul class="pagination">
+        {{ page_string }}
+    </ul>
+{% endblock %}

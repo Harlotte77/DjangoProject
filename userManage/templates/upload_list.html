@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div style="margin-bottom: 10px;">
+        <a href="/upload/modalform/" class="btn btn-success">上传</a>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+            文件列表
+        </div>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>上传者</th>
+                <th>图片</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for upload_element in upload_data %}
+                <tr>
+                    <th scope="row">{{ upload_element.id }}</th>
+                    <td>{{ upload_element.name }}</td>
+                    <td>
+                        <img src="/media/{{ upload_element.file }}" style="height: 80px;">
+                    </td>
+                    <td>
+                        <a class="btn btn-primary btn-xs" href="#">编辑</a>
+                        <a class="btn btn-danger btn-xs" href="#">删除</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <ul class="pagination">
+        {{ page_string }}
+    </ul>
+{% endblock %}

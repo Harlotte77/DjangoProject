@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div style="margin-bottom: 10px;">
+        <a href="/user/add/" class="btn btn-success">新建用户</a>
+        <a href="/user/add/ModelForm" class="btn btn-success">新建用户(ModalForm)</a>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+            员工
+        </div>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>姓名</th>
+                <th>密码</th>
+                <th>年龄</th>
+                <th>性别</th>
+                <th>薪资</th>
+                <th>入职时间</th>
+                <th>所在部门</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user_element in user_data %}
+                <tr>
+                    <th scope="row">{{ user_element.id }}</th>
+                    <td>{{ user_element.name }}</td>
+                    <td>{{ user_element.password }}</td>
+                    <td>{{ user_element.age }}</td>
+                    <td>{{ user_element.get_gender_display }}</td>
+                    <td>{{ user_element.salary }}</td>
+                    <td>{{ user_element.create_time|date:"Y-m-d" }}</td>
+                    <td>{{ user_element.user_depart.department_title }}</td>
+                    <td>
+                        <a class="btn btn-primary btn-xs" href="/user/{{ user_element.id }}/edit/">编辑</a>
+                        <a class="btn btn-danger btn-xs" href="/user/{{ user_element.id }}/delete/">删除</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <ul class="pagination">
+        {{ page_string }}
+    </ul>
+{% endblock %}
