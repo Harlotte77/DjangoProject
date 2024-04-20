@@ -31,8 +31,7 @@
 1. 下载仓库代码
 
    ```git
-   git clone https://github.com/IDEA-opensource/DAB-DETR.git
-   cd DAB-DETR
+   git clone https://github.com/Harlotte77/DjangoProject.git
    ```
 
  2. 创建并激活虚拟环境
